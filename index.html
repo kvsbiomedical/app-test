@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DermaScan AI | Skin Screening Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow" aria-hidden="true"></div>
+    <main class="app-shell">
+      <header class="hero">
+        <p class="eyebrow">Early Insight • Better Action</p>
+        <h1>Skin Cancer Screening Companion</h1>
+        <p>
+          Use your camera or upload a close-up image to produce a structured risk-oriented report.
+          This tool is for educational screening support and <strong>not</strong> a medical diagnosis.
+        </p>
+      </header>
+
+      <section class="panel capture-panel">
+        <div class="camera-card">
+          <div class="video-wrap">
+            <video id="cameraFeed" autoplay playsinline muted></video>
+            <div id="cameraPlaceholder" class="placeholder">
+              <p>Camera preview will appear here</p>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="startCamera" class="btn primary">Start Camera</button>
+            <button id="captureImage" class="btn">Capture Frame</button>
+            <label class="btn upload-btn" for="imageUpload">Upload Image</label>
+            <input id="imageUpload" type="file" accept="image/*" hidden />
+          </div>
+        </div>
+
+        <aside class="preview-card">
+          <h2>Selected Lesion Preview</h2>
+          <img id="imagePreview" alt="Selected skin lesion preview" />
+          <p id="imageState">No image selected yet.</p>
+          <button id="analyzeButton" class="btn primary wide" disabled>Generate Report</button>
+        </aside>
+      </section>
+
+      <section id="report" class="panel report-panel hidden" aria-live="polite">
+        <div class="report-header">
+          <h2>Detailed Screening Report</h2>
+          <span id="riskBadge" class="risk-badge">Pending</span>
+        </div>
+
+        <div class="meter-wrap">
+          <canvas id="riskMeter" width="380" height="130" aria-label="Risk score meter"></canvas>
+          <div class="score-box">
+            <span>Estimated Concern Score</span>
+            <strong id="riskScore">--%</strong>
+          </div>
+        </div>
+
+        <div class="report-grid">
+          <article>
+            <h3>ABCDE Assessment</h3>
+            <ul id="abcdeList"></ul>
+          </article>
+          <article>
+            <h3>Visual Pattern Notes</h3>
+            <ul id="patternList"></ul>
+          </article>
+          <article>
+            <h3>Recommended Next Steps</h3>
+            <ul id="nextSteps"></ul>
+          </article>
+          <article>
+            <h3>Consultation Priority</h3>
+            <p id="priorityText"></p>
+          </article>
+        </div>
+        <p class="disclaimer">
+          Disclaimer: This output is AI-assisted screening guidance only and cannot replace examination
+          by a board-certified dermatologist.
+        </p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
